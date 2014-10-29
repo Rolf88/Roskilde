@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ScrollWorld()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Background1.\r\n\ \r\n
+comment1.params=
+comment1.target=void\ act()
+comment2.params=position
+comment2.target=void\ paint(int)
+comment2.text=\r\n\ Paint\ scrolling\ image\ at\ given\ position\ and\ make\ sure\ the\ rest\ of\r\n\ the\ background\ is\ also\ painted\ with\ the\ same\ image.\r\n
+comment3.params=width\ height
+comment3.target=greenfoot.GreenfootImage\ getScrollingImage(int,\ int)
+comment3.text=\r\n\ Returns\ an\ image\ with\ the\ given\ dimensions.\r\n
+comment4.params=
+comment4.target=void\ addBeer()
+comment5.params=
+comment5.target=void\ addCondoms()
+comment6.params=
+comment6.target=void\ addFood()
+numComments=7
