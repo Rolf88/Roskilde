@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Drugs extends Negative
 {
+    public static int SCORE = -2;
     /**
      * Act - do whatever the Drugs wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -15,5 +16,7 @@ public class Drugs extends Negative
     public void act() 
     {
         // Add your action code here.
+        moveScene();
+        
     }    
 }

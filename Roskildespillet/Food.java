@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Food extends Positive
 {
+    public static int SCORE = 1;
     /**
      * Act - do whatever the Food wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -16,5 +17,6 @@ public class Food extends Positive
     {
         // Add your action code here.
         moveScene();
+        
     }    
 }

@@ -15,5 +15,6 @@ public class Negative extends Collectables
     public void act() 
     {
         // Add your action code here.
+        
     }    
 }

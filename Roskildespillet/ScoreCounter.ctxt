@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ScoreCounter()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ ScoreCounter.\r\n\ \r\n
+comment1.params=
+comment1.target=int\ getEatenBeer()
+comment10.params=drugs
+comment10.target=void\ eatDrugs(Drugs)
+comment2.params=
+comment2.target=int\ getEatenFood()
+comment3.params=
+comment3.target=int\ getEatenCondoms()
+comment4.params=
+comment4.target=int\ getEatenThief()
+comment5.params=
+comment5.target=int\ getEatenDrugs()
+comment6.params=beer
+comment6.target=void\ eatBeer(Beer)
+comment7.params=food
+comment7.target=void\ eatFood(Food)
+comment8.params=condoms
+comment8.target=void\ eatCondoms(Condoms)
+comment9.params=thief
+comment9.target=void\ eatThief(Thief)
+numComments=11

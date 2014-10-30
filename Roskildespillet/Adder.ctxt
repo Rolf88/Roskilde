@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=timer\ addEvery
+comment0.target=Adder(Timer,\ int)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Adder\r\n
+comment1.params=
+comment1.target=boolean\ shouldAdd()
+numComments=2
