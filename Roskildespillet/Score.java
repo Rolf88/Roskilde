@@ -17,25 +17,14 @@ public class Score extends Actor
     public Score()
     {   
         setImage(new GreenfootImage(200, 45));
-        setScore(0);
+        //setScore(0);
     }
     
     public void setScore(int amount)
     {
-        ScoreCounter level = (ScoreCounter)getWorld();
-    
-        _score = (level.getEatenBeer() + level.getEatenFood() + level.getEatenCondoms()
-        - level.getEatenThief() - level.getEatenDrugs());
         
         
-        GreenfootImage newImage = getImage();
-        newImage.clear();
-        //newImage.setColor(new Color(127, 127, 127, 127));
-        //newImage.fill();
-        newImage.setColor(Color.white);
-        newImage.setFont(new Font("Helvetica", Font.BOLD, 30));
-        newImage.drawString("Score: " + _score, 10, 30);
-        setImage(newImage);
+        setImage(new GreenfootImage("Poin: " + amount, 20, Color. WHITE, null));
         
     }
     

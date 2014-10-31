@@ -37,13 +37,13 @@ public class ScrollWorld extends ScoreCounter
         _drugsAdder = new Adder(_timer, 3500);
         
 
-        GreenfootImage background = new GreenfootImage(640, 960);
-        scrollingImage = getScrollingImage(640, 960);
+        GreenfootImage background = new GreenfootImage(320, 568);
+        scrollingImage = getScrollingImage(320, 568);
         background.drawImage(scrollingImage, 0, 0);
         setBackground(background);
-
+        initializeScore();
         
-        addObject(new Character(), 320, 480);
+        addObject(new Character(), 160, 480);
         
         
     }
@@ -61,7 +61,9 @@ public class ScrollWorld extends ScoreCounter
         scrollPosition -= scrollSpeed;
         paint(scrollPosition);
         
-        initializeScore();
+    
+        _score.setScore(getEatenBeer() + getEatenFood() + getEatenCondoms()
+        - getEatenThief() - getEatenDrugs());
         
         addBeer();
         addCondoms();
@@ -154,5 +156,10 @@ public class ScrollWorld extends ScoreCounter
     {
         _score = new Score();
         addObject(_score, 135,  40);
+    }
+    
+    public Score getScore() 
+    {
+        return _score;
     }
 }

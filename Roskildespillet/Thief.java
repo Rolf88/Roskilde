@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Thief extends Negative
 {
-    public static int SCORE = -1;
+    public static int SCORE = 1;
     /**
      * Act - do whatever the Thief wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
