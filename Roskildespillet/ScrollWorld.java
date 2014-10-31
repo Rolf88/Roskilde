@@ -14,6 +14,7 @@ public class ScrollWorld extends ScoreCounter
     private GreenfootImage scrollingImage;
     private int scrollPosition = 0;
     
+    private Adder _obstacleAdder;
     private Adder _beerAdder;
     private Adder _foodAdder;
     private Adder _condomsAdder;
@@ -35,6 +36,7 @@ public class ScrollWorld extends ScoreCounter
         _condomsAdder = new Adder(_timer, 3000);
         _thiefAdder = new Adder(_timer, 2000);
         _drugsAdder = new Adder(_timer, 3500);
+        _obstacleAdder = new Adder(_timer, 5000);
         
 
         GreenfootImage background = new GreenfootImage(320, 568);
@@ -70,6 +72,7 @@ public class ScrollWorld extends ScoreCounter
         addFood();
         addThief();
         addDrugs();
+        addObstacle();
     }
 
     /**
@@ -150,6 +153,15 @@ public class ScrollWorld extends ScoreCounter
             addObject(new Drugs(), x, 0);  
         }
      
+    }
+    
+    public void addObstacle(){
+        if(_obstacleAdder.shouldAdd()){
+            //random top edge location
+            int x = Greenfoot.getRandomNumber(218) + 50;
+            //spawn
+            addObject(new Obstacle(), x, 0);
+        }
     }
     
     public void initializeScore()
