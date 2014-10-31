@@ -24,7 +24,7 @@ public class Score extends Actor
     {
         
         
-        setImage(new GreenfootImage("Poin: " + amount, 20, Color. WHITE, null));
+        setImage(new GreenfootImage("Points: " + amount, 20, Color. WHITE, null));
         
     }
     

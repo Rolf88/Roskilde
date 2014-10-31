@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ScrollWorld extends ScoreCounter
 {
-    private static final GreenfootImage bgImage = new GreenfootImage("Background1.png");
+    private static final GreenfootImage bgImage = new GreenfootImage("Background2.png");
     private static final int scrollSpeed = -3;
 
     private GreenfootImage scrollingImage;
@@ -101,7 +101,7 @@ public class ScrollWorld extends ScoreCounter
         if (_beerAdder.shouldAdd())  
         {  
             // random top edge location  
-            int x = Greenfoot.getRandomNumber(getWidth());  
+            int x = Greenfoot.getRandomNumber(218) + 50;  
             // spawn  
             addObject(new Beer(), x, 0);  
         }
@@ -112,7 +112,7 @@ public class ScrollWorld extends ScoreCounter
         if (_condomsAdder.shouldAdd())  
         {  
             // random top edge location  
-            int x = Greenfoot.getRandomNumber(getWidth());  
+            int x = Greenfoot.getRandomNumber(218) + 50;  
             // spawn  
             addObject(new Condoms(), x, 0);  
         }
@@ -123,7 +123,7 @@ public class ScrollWorld extends ScoreCounter
         if (_foodAdder.shouldAdd())  
         {  
             // random top edge location  
-            int x = Greenfoot.getRandomNumber(getWidth());  
+            int x = Greenfoot.getRandomNumber(218) + 50;  
             // spawn  
             addObject(new Food(), x, 0);  
         }
@@ -134,7 +134,7 @@ public class ScrollWorld extends ScoreCounter
         if (_thiefAdder.shouldAdd())  
         {  
             // random top edge location  
-            int x = Greenfoot.getRandomNumber(getWidth());  
+            int x = Greenfoot.getRandomNumber(218) + 50;  
             // spawn  
             addObject(new Thief(), x, 0);  
         }
@@ -145,7 +145,7 @@ public class ScrollWorld extends ScoreCounter
         if (_drugsAdder.shouldAdd())  
         {  
             // random top edge location  
-            int x = Greenfoot.getRandomNumber(getWidth());  
+            int x = Greenfoot.getRandomNumber(218) + 50;  
             // spawn  
             addObject(new Drugs(), x, 0);  
         }
@@ -155,7 +155,7 @@ public class ScrollWorld extends ScoreCounter
     public void initializeScore()
     {
         _score = new Score();
-        addObject(_score, 135,  40);
+        addObject(_score, 40,  40);
     }
     
     public Score getScore() 
