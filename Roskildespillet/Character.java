@@ -72,6 +72,12 @@ public class Character extends Actor
             
             getWorld().removeObject((Obstacle)obstacle);
         }
+        
+    }
+    
+    public int getLife()
+    {
+        return _life;
     }
     }   
  

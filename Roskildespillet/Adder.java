@@ -4,7 +4,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Adder  
+public class Adder 
 {
     private Timer _timer;
     private int _addEvery;
