@@ -5,6 +5,8 @@
  */
 package app;
 
+import app.domain.AppStates;
+import game.GameResult;
 import java.awt.CardLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -47,7 +49,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 cardLayout.show(this.mainPanel, "authenticationCard");
                 break;
             case LOST:
+                GameResult gameResult = (GameResult)o1;
                 cardLayout.show(this.mainPanel, "gameLostCard");
+                this.gameLostPanel.setScore(gameResult.getScore());
                 break;
             case HIGHSCORE:
                 cardLayout.show(this.mainPanel, "highscoreCard");

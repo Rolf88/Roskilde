@@ -5,16 +5,17 @@
  */
 package app;
 
+import app.domain.AppStates;
 import app.helpers.ArtistFactory;
 import business.AccountService;
 import business.ArtistService;
+import business.GameService;
 import domain.Account;
 import domain.Artist;
+import domain.Quiz;
 import domain.exceptions.TicketNotFoundException;
 import domain.exceptions.ValidationFaliedException;
 import java.util.UUID;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -128,6 +129,9 @@ public class AuthenticationPanel extends javax.swing.JPanel {
 
     private void btnAuthenticateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuthenticateActionPerformed
         try {
+            GameService gameService = new GameService();
+            Quiz quiz = gameService.getRandomQuizQuestion(UUID.fromString("10febf36-6041-11e4-aa15-123b93f75cba"));
+
             String username = txtUsername.getText();
             if (username.length() == 0) {
                 throw new ValidationFaliedException("Username can not be empty");
@@ -141,7 +145,8 @@ public class AuthenticationPanel extends javax.swing.JPanel {
             Account account = new Account(UUID.randomUUID(), username, password, UUID.randomUUID());
 
             accountService.add(account);
-
+            
+            AppState.getInstance().setAccount(account);
             AppState.getInstance().setState(AppStates.PLAYING);
         } catch (ValidationFaliedException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());

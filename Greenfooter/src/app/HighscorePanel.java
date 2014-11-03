@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package app;
+
+import business.GameService;
+import domain.HighscoreItem;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author priva_000
  */
 public class HighscorePanel extends javax.swing.JPanel {
+
+    private GameService gameService = new GameService();
 
     /**
      * Creates new form HighscorePanel
@@ -31,12 +36,18 @@ public class HighscorePanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         lblHighscoreHeader = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblHighscores = new javax.swing.JTable();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         lblHighscoreHeader.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblHighscoreHeader.setText("Highscore");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHighscores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -62,10 +73,10 @@ public class HighscorePanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setRowSelectionAllowed(false);
-        jTable1.getTableHeader().setResizingAllowed(false);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tblHighscores.setRowSelectionAllowed(false);
+        tblHighscores.getTableHeader().setResizingAllowed(false);
+        tblHighscores.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblHighscores);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,11 +106,31 @@ public class HighscorePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        DefaultTableModel model = (DefaultTableModel) tblHighscores.getModel();
+
+        // clear the table
+        int numberOfRows = model.getRowCount();
+        for (int rowIndex = numberOfRows - 1; rowIndex >= 0; rowIndex--) {
+            model.removeRow(rowIndex);
+        }
+
+        // add the persons to the table
+        for (HighscoreItem highscoreItem : gameService.getHighscores()) {
+            Object[] row = {
+                highscoreItem.getAccountName(), highscoreItem.getScore()
+            };
+
+            model.addRow(row);
+        }
+
+    }//GEN-LAST:event_formComponentShown
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblHighscoreHeader;
+    private javax.swing.JTable tblHighscores;
     // End of variables declaration//GEN-END:variables
 }

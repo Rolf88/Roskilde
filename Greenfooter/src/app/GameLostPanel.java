@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package app;
+
+import app.domain.AppStates;
 
 /**
  *
@@ -29,28 +30,90 @@ public class GameLostPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         lblLostHeader = new javax.swing.JLabel();
+        lblScoreText = new javax.swing.JLabel();
+        lblScore = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnPlayAgain = new javax.swing.JButton();
+        btnHighscore = new javax.swing.JButton();
 
-        lblLostHeader.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblLostHeader.setText("Du tabte spillet!");
+        lblLostHeader.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblLostHeader.setText("You lost!");
+
+        lblScoreText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblScoreText.setText("You finished the game with a score of: ");
+
+        lblScore.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblScore.setText("0");
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        btnPlayAgain.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnPlayAgain.setText("Play again");
+        btnPlayAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlayAgainActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPlayAgain, java.awt.BorderLayout.PAGE_START);
+
+        btnHighscore.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnHighscore.setText("Highscore");
+        btnHighscore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHighscoreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnHighscore, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblLostHeader)
-                .addGap(0, 232, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLostHeader)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblScoreText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblScore)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblLostHeader)
-                .addGap(0, 271, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblScoreText)
+                    .addComponent(lblScore))
+                .addGap(72, 72, 72)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 196, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnHighscoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHighscoreActionPerformed
+        AppState.getInstance().setState(AppStates.HIGHSCORE);
+    }//GEN-LAST:event_btnHighscoreActionPerformed
+
+    private void btnPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayAgainActionPerformed
+        AppState.getInstance().setState(AppStates.PLAYING);
+    }//GEN-LAST:event_btnPlayAgainActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHighscore;
+    private javax.swing.JButton btnPlayAgain;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLostHeader;
+    private javax.swing.JLabel lblScore;
+    private javax.swing.JLabel lblScoreText;
     // End of variables declaration//GEN-END:variables
+
+    void setScore(int score) {
+        lblScore.setText(String.valueOf(score));
+    }
 }

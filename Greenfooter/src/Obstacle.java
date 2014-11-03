@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Obstacle extends Actor
+public class Obstacle extends Collectables
 {
     /**
      * Act - do whatever the Obstacle wants to do. This method is called whenever
@@ -15,5 +15,7 @@ public class Obstacle extends Actor
     public void act() 
     {
         // Add your action code here.
-    }    
+        moveScene();
+    }
+    
 }

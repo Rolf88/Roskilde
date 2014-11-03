@@ -22,6 +22,7 @@ public class Collectables extends Actor
     protected void moveScene()
     {
         setLocation(getX(), getY()- GAMESPEED);
+        
         /*if(isAtEdge()){
             getWorld().removeObject(this);
         }*/

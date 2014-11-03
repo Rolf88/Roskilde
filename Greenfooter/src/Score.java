@@ -10,7 +10,6 @@ import java.awt.Font;
  */
 public class Score extends Actor 
 {
-    private int _score = 0;
     /**
      * Constructor for objects of class Score
      */
@@ -24,12 +23,8 @@ public class Score extends Actor
     {
         
         
-        setImage(new GreenfootImage("Poin: " + amount, 20, Color. WHITE, null));
+        setImage(new GreenfootImage("Points: " + amount, 20, Color. WHITE, null));
         
     }
-    
-    public int getScore()
-    {
-        return _score;
-    }
+   
 }

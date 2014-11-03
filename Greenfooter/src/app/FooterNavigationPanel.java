@@ -5,6 +5,8 @@
  */
 package app;
 
+import app.domain.AppStates;
+
 /**
  *
  * @author priva_000

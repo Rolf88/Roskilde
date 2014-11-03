@@ -59,7 +59,6 @@ public class AccountRepository {
             System.out.println("Could not save to file!");
             System.out.println(ex.toString());
         }
-
     }
 
     private Account deserialize(String str) {
