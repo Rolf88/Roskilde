@@ -66,8 +66,7 @@ public class ScrollWorld extends ScoreCounter {
 
     public void act() {
         ScrollWorld.scrollSpeed -= 0.8;
-        
-
+                
         _points = (getEatenBeer() + getEatenFood() + getEatenCondoms() + getEatenPoints()
                 - getEatenThief() - getEatenDrugs());
         shouldRunGame();

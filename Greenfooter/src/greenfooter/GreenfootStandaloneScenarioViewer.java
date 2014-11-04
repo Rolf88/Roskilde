@@ -134,19 +134,15 @@ public class GreenfootStandaloneScenarioViewer extends JPanel {
     }
 
     public World instantiateNewWorld() {
+        World world = null;
+        
         try {
-            World world = (World) worldConstructor.newInstance(new Object[]{});
-            return world;
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.getCause().printStackTrace();
+            world = (World) worldConstructor.newInstance(new Object[]{});
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(GreenfootStandaloneScenarioViewer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+
+        return world;
     }
 
     public World getWorld() {
