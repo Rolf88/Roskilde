@@ -13,7 +13,7 @@ public class ScoreCounter extends World
     private int _eatenCondoms = 0;
     private int _eatenThief = 0;
     private int _eatenDrugs = 0;
-    
+    private int _eatenPoints = 0;
     /**
      * Constructor for objects of class ScoreCounter.
      * 
@@ -38,6 +38,9 @@ public class ScoreCounter extends World
     }
     public int getEatenDrugs(){
         return _eatenDrugs;
+    }
+    public int getEatenPoints(){
+        return _eatenPoints;
     }
     
     public void eatBeer(Beer beer){
@@ -64,5 +67,8 @@ public class ScoreCounter extends World
         _eatenDrugs += Drugs.SCORE;
         
         removeObject(drugs);
+    }
+    public void eatPoints(int points){
+       _eatenPoints += points; 
     }
 }

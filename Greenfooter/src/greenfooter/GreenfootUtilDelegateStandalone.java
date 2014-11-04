@@ -66,7 +66,7 @@ public class GreenfootUtilDelegateStandalone implements GreenfootUtilDelegate {
 
     @Override
     public String getGreenfootLogoPath() {
-        return "C:\\Users\\priva_000\\Documents\\CPH Business\\Datamatiker\\Greenfoot\\AngryBull\\images\\igloo.png";
+        return "C:\\Users\\rolf\\Desktop\\datamatiker\\ROSKILDE PROJEKT\\Svar1.png";
     }
 
     @Override

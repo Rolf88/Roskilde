@@ -1,5 +1,3 @@
-import app.AppState;
-import game.GameResult;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -38,10 +36,6 @@ public class Character extends Actor
            ScoreCounter level = (ScoreCounter)getWorld();
            
            level.eatBeer((Beer)beer);
-           
-           AppState.getInstance()
-                   .getGameState()
-                   .finishGame(new GameResult(200));
         }
         
         if(food !=null){

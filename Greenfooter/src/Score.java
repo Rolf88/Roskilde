@@ -10,6 +10,7 @@ import java.awt.Font;
  */
 public class Score extends Actor 
 {
+    
     /**
      * Constructor for objects of class Score
      */

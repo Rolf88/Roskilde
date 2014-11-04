@@ -142,10 +142,10 @@ public class AuthenticationPanel extends javax.swing.JPanel {
                 throw new ValidationFaliedException("Ticket code can not be empty");
             }
 
-            Account account = new Account(UUID.randomUUID(), username, password, UUID.randomUUID());
+            Account account = new Account(UUID.randomUUID(), username, password, UUID.fromString("10febf36-6041-11e4-aa15-123b93f75cba"));
 
             accountService.add(account);
-            
+
             AppState.getInstance().setAccount(account);
             AppState.getInstance().setState(AppStates.PLAYING);
         } catch (ValidationFaliedException ex) {
