@@ -7,12 +7,11 @@ package app;
 
 import app.domain.AppStates;
 import app.helpers.ArtistFactory;
+import app.helpers.ComboItem;
 import business.AccountService;
 import business.ArtistService;
-import business.GameService;
 import domain.Account;
 import domain.Artist;
-import domain.Quiz;
 import domain.exceptions.TicketNotFoundException;
 import domain.exceptions.ValidationFaliedException;
 import java.util.UUID;
@@ -78,6 +77,12 @@ public class AuthenticationPanel extends javax.swing.JPanel {
 
         lblArtist.setText("Artsit");
 
+        ddlListOfArtists.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ddlListOfArtistsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,9 +134,6 @@ public class AuthenticationPanel extends javax.swing.JPanel {
 
     private void btnAuthenticateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuthenticateActionPerformed
         try {
-            GameService gameService = new GameService();
-            Quiz quiz = gameService.getRandomQuizQuestion(UUID.fromString("10febf36-6041-11e4-aa15-123b93f75cba"));
-
             String username = txtUsername.getText();
             if (username.length() == 0) {
                 throw new ValidationFaliedException("Username can not be empty");
@@ -141,8 +143,10 @@ public class AuthenticationPanel extends javax.swing.JPanel {
             if (password.length() == 0) {
                 throw new ValidationFaliedException("Ticket code can not be empty");
             }
-
-            Account account = new Account(UUID.randomUUID(), username, password, UUID.randomUUID());
+            
+            ComboItem selectedItem = (ComboItem)ddlListOfArtists.getSelectedItem();
+            
+            Account account = new Account(UUID.randomUUID(), username, password, UUID.fromString(selectedItem.getValue()));
 
             accountService.add(account);
             
@@ -154,6 +158,10 @@ public class AuthenticationPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnAuthenticateActionPerformed
+
+    private void ddlListOfArtistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddlListOfArtistsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ddlListOfArtistsActionPerformed
 
     public void setMainFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
