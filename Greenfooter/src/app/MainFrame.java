@@ -76,20 +76,32 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         footerNavigationPanel = new app.FooterNavigationPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("Form"); // NOI18N
         setPreferredSize(new java.awt.Dimension(320, 568));
         setResizable(false);
 
+        mainPanel.setName("mainPanel"); // NOI18N
         mainPanel.setLayout(new java.awt.CardLayout());
+
+        authenticationPanel.setName("authenticationPanel"); // NOI18N
         mainPanel.add(authenticationPanel, "authenticationCard");
+
+        gamePanel.setName("gamePanel"); // NOI18N
         mainPanel.add(gamePanel, "gameCard");
+
+        gameLostPanel.setName("gameLostPanel"); // NOI18N
         mainPanel.add(gameLostPanel, "gameLostCard");
+
+        highscorePanel.setName("highscorePanel"); // NOI18N
         mainPanel.add(highscorePanel, "highscoreCard");
+
+        footerNavigationPanel.setName("footerNavigationPanel"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 256, Short.MAX_VALUE)
             .addComponent(footerNavigationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
