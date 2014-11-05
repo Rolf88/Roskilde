@@ -25,13 +25,13 @@ public class Svar1 extends Actor
    }
    
    public void build(){        
-       int y = 150;
+       int y = 100;
        for(QuizAnswer answer : _answers){
-           getWorld().addObject(new Answer(this, answer.getAnswer(),answer.isIsCorrect()), 50, y);
+           getWorld().addObject(new Answer(this, answer.getAnswer(),answer.isIsCorrect()), 160, y);
            
            y += 50;
         }
-               getWorld().addObject(new Question(_quizspørgsmål),120,50);
+               getWorld().addObject(new Question(_quizspørgsmål),160,50);
                
     }
    

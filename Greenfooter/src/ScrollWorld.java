@@ -38,7 +38,7 @@ public class ScrollWorld extends ScoreCounter {
 
     private int _points;
     private boolean isInQuizMode = false;
-    private int checkPoints = 15;
+    private int checkPoints = 1;
 
     /**
      * Constructor for objects of class Background1.

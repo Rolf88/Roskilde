@@ -2,6 +2,7 @@
 import greenfoot.Actor;
 import greenfoot.GreenfootImage;
 import java.awt.Color;
+import java.awt.Font;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,6 +16,9 @@ import java.awt.Color;
 public class Question extends Actor {
 
     public Question(String question) {
-        setImage(new GreenfootImage(question, 20, Color.BLACK, null));
+        GreenfootImage image = new GreenfootImage(320, 50);
+        image.setFont(new java.awt.Font("Helvetica", Font.BOLD, 16));
+        image.drawString(question, 10, 25);
+        setImage(image);
     }
 }

@@ -17,7 +17,10 @@ public class Answer extends Actor
         _question = question;
         _isCorrect = isCorrect;
         
-        setImage(new GreenfootImage(answer, 20, Color. BLACK, null));
+        GreenfootImage image = new GreenfootImage(320, 50);
+        image.setFont(new java.awt.Font("Helvetica", Font.PLAIN, 16));
+        image.drawString(answer, 10, 25);
+        setImage(image);
     }
     
     /**
