@@ -37,12 +37,33 @@ public class ArtistRepository {
         return new ArrayList<>();
     }
 
+    public Artist getById(UUID artistId) {
+        try {
+            try (Scanner scanner = new Scanner(new File(ArtistFileName))) {
+                while (scanner.hasNextLine()) {
+                    String currentLine = scanner.nextLine();
+
+                    if (currentLine.contains(artistId.toString())) {
+                        return deserialize(currentLine);
+                    }
+                }
+            }
+
+        } catch (IOException ex) {
+            System.out.println("Could not load file!");
+            System.out.println(ex.toString());
+        }
+
+        return null;
+    }
+
     private Artist deserialize(String str) {
         String[] strArr = str.split(",");
-        
+
         UUID artistId = UUID.fromString(strArr[0].trim());
         String name = strArr[1].trim();
-        
-        return new Artist(artistId, name);
+        String soundFileName = strArr[2].trim();
+
+        return new Artist(artistId, name, soundFileName);
     }
 }
