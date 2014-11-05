@@ -63,8 +63,6 @@ public class Character extends Actor
             ScoreCounter level = (ScoreCounter) getWorld();
             
             level.eatThief((Thief) thief);
-            
-            
         }
         
         if (drugs != null) {

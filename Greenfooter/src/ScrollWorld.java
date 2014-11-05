@@ -1,11 +1,12 @@
 
 import app.AppState;
+import business.ArtistService;
 import business.GameService;
 import domain.Account;
+import domain.Artist;
 import domain.Quiz;
 import game.GameResult;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.*;
 
 /**
  * Write a description of class Background1 here.
@@ -40,6 +41,10 @@ public class ScrollWorld extends ScoreCounter {
     private boolean isInQuizMode = false;
     private int checkPoints = 1;
 
+    private ArtistService _artistService = new ArtistService();
+    private boolean _isInitialized = false;
+    private GreenfootSound _backgroundSound = null;
+
     /**
      * Constructor for objects of class Background1.
      *
@@ -63,10 +68,22 @@ public class ScrollWorld extends ScoreCounter {
         Collectables.GAMESPEED = -3;
 
         addObject(_player, 160, 480);
+    }
 
+    public void initialize() {
+        Account account = AppState.getInstance().getAccount();
+        Artist artist = _artistService.getById(account.getArtistId());
+
+        _backgroundSound = new GreenfootSound(artist.getSoundFileName());
+        _backgroundSound.playLoop();
+
+        _isInitialized = true;
     }
 
     public void act() {
+        if (!_isInitialized) {
+            initialize();
+        }
 
         _points = (getEatenBeer() + getEatenFood() + getEatenCondoms() + getEatenPoints()
                 - getEatenThief() - getEatenDrugs());
@@ -264,6 +281,11 @@ public class ScrollWorld extends ScoreCounter {
     public void die() {
         if (_player.getLife() < 1) {
             AppState.getInstance().getGameState().finishGame(new GameResult(_points));
+
+            if (_backgroundSound != null) {
+                _backgroundSound.stop();
+                _backgroundSound = null;
+            }
         }
     }
 
