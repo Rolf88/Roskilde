@@ -39,7 +39,7 @@ public class ScrollWorld extends ScoreCounter {
 
     private int _points;
     private boolean isInQuizMode = false;
-    private int checkPoints = 1;
+    private int checkPoints = 15;
 
     private ArtistService _artistService = new ArtistService();
     private boolean _isInitialized = false;
@@ -275,7 +275,7 @@ public class ScrollWorld extends ScoreCounter {
 
     public void setIsInQuizMode(boolean quiz) {
         isInQuizMode = quiz;
-        checkPoints = checkPoints * 2;
+        checkPoints = (checkPoints * 3)/2;
     }
 
     public void die() {

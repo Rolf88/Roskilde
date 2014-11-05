@@ -13,7 +13,7 @@ import java.util.*;
 public class Svar1 extends Actor
 {
    public static int INCORRECTPOINTS = -5;
-   public static int CORRECTPOINTS = 10;
+   public static int CORRECTPOINTS = 5;
    private String _quizspørgsmål;
    private List<QuizAnswer> _answers;
    
