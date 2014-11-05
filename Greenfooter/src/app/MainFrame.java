@@ -30,7 +30,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
      * Creates new form MainFrame
      */
     public MainFrame() {
-    setContentPane(new JLabel(new ImageIcon("C:\\Users\\priva_000\\Desktop\\iphone.png")));
+        // Add iframe mock
+        setContentPane(new JLabel(new ImageIcon(getClass().getResource("iphone.png"))));
+        
         initComponents();
 
         AppState.getInstance().addObserver(this);
@@ -51,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 setLocation(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY);
             }
         });
-        
+
         setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 
