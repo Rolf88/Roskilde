@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Collectables extends Actor {
 
-    int GAMESPEED = -3;
+    public static int GAMESPEED = -3;
 
     protected void moveScene() {
         int y = getY() - GAMESPEED;

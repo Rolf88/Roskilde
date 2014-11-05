@@ -13,7 +13,7 @@ import java.util.*;
 public class Svar1 extends Actor
 {
    public static int INCORRECTPOINTS = -5;
-   public static int CORRECTPOINTS = 20;
+   public static int CORRECTPOINTS = 10;
    private String _quizspørgsmål;
    private List<QuizAnswer> _answers;
    
@@ -40,6 +40,8 @@ public class Svar1 extends Actor
         scorecounter.eatPoints(CORRECTPOINTS);
         ScrollWorld scrollworld = (ScrollWorld)getWorld();
         scrollworld.setIsInQuizMode(false);
+        ScrollWorld.scrollSpeed -= 1;
+        Collectables.GAMESPEED -= 1;
     }
    
     public void onIncorrect(){
@@ -47,7 +49,8 @@ public class Svar1 extends Actor
         scorecounter.eatPoints(INCORRECTPOINTS);
         ScrollWorld scrollworld = (ScrollWorld)getWorld();
         scrollworld.setIsInQuizMode(false);
-        
+        ScrollWorld.scrollSpeed -= 1;
+        Collectables.GAMESPEED -= 1;
     }
     
    public void act(){

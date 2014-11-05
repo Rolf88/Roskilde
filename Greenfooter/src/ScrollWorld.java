@@ -16,7 +16,7 @@ import java.util.*;
 public class ScrollWorld extends ScoreCounter {
 
     private static final GreenfootImage bgImage = new GreenfootImage("Background2.png");
-    private static int scrollSpeed = -3;
+    public static int scrollSpeed = -3;
 
     private GreenfootImage scrollingImage;
     private int scrollPosition = 0;
@@ -38,7 +38,7 @@ public class ScrollWorld extends ScoreCounter {
 
     private int _points;
     private boolean isInQuizMode = false;
-    private int checkPoints = 7;
+    private int checkPoints = 15;
 
     /**
      * Constructor for objects of class Background1.
@@ -46,12 +46,12 @@ public class ScrollWorld extends ScoreCounter {
      */
     public ScrollWorld() {
         _timer = new Timer();
-        _beerAdder = new Adder(_timer, 2100);
+        _beerAdder = new Adder(_timer, 1500);
         _foodAdder = new Adder(_timer, 1000);
         _condomsAdder = new Adder(_timer, 3000);
         _thiefAdder = new Adder(_timer, 1800);
         _drugsAdder = new Adder(_timer, 3500);
-        _obstacleAdder = new Adder(_timer, 5000);
+        _obstacleAdder = new Adder(_timer, 3500);
 
         GreenfootImage background = new GreenfootImage(320, 568);
         scrollingImage = getScrollingImage(320, 568);
@@ -65,8 +65,7 @@ public class ScrollWorld extends ScoreCounter {
     }
 
     public void act() {
-        ScrollWorld.scrollSpeed -= 0.8;
-                
+
         _points = (getEatenBeer() + getEatenFood() + getEatenCondoms() + getEatenPoints()
                 - getEatenThief() - getEatenDrugs());
         shouldRunGame();
@@ -213,9 +212,10 @@ public class ScrollWorld extends ScoreCounter {
     }
 
     public void shouldRunGame() {
-        if(_points>=checkPoints){
-//if (_points >= 10 && _points <= 15) {
+        if (_points >= checkPoints) {
+
             if (isInQuizMode == false) {
+
                 Account account = AppState.getInstance().getAccount();
 
                 GameService gameService = new GameService();
@@ -230,8 +230,7 @@ public class ScrollWorld extends ScoreCounter {
 
                 _svar1.build();
                 isInQuizMode = true;
-                
-                
+
             }
 
         } else {
@@ -253,11 +252,12 @@ public class ScrollWorld extends ScoreCounter {
     public int getPoints() {
         return _points;
     }
-    
-    public void setIsInQuizMode(boolean quiz){
+
+    public void setIsInQuizMode(boolean quiz) {
         isInQuizMode = quiz;
-        checkPoints= checkPoints*2;
+        checkPoints = checkPoints * 2;
     }
+
     public void die() {
         if (_player.getLife() < 1) {
             AppState.getInstance().getGameState().finishGame(new GameResult(_points));
