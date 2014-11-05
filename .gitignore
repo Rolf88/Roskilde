@@ -41,3 +41,11 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+Greenfooter/nbproject/private/
+Greenfooter/build/
+Greenfooter/nbbuild/
+Greenfooter/dist/
+Greenfooter/nbdist/
+Greenfooter/nbactions.xml
+nb-configuration.xml

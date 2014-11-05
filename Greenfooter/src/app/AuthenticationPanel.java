@@ -61,6 +61,8 @@ public class AuthenticationPanel extends javax.swing.JPanel {
 
         lblUsername.setText("Username");
 
+        txtPassword.setText("997483276");
+
         lblPassword.setText("Ticket code");
 
         btnAuthenticate.setText("Login");
@@ -128,7 +130,7 @@ public class AuthenticationPanel extends javax.swing.JPanel {
                 .addComponent(btnAuthenticate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

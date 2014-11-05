@@ -65,8 +65,6 @@ public class ScrollWorld extends ScoreCounter {
     }
 
     public void act() {
-        
-        
 
         _points = (getEatenBeer() + getEatenFood() + getEatenCondoms() + getEatenPoints()
                 - getEatenThief() - getEatenDrugs());
@@ -214,13 +212,10 @@ public class ScrollWorld extends ScoreCounter {
     }
 
     public void shouldRunGame() {
-        if(_points>=checkPoints){
-            
-            
+        if (_points >= checkPoints) {
 
             if (isInQuizMode == false) {
-                    
-                
+
                 Account account = AppState.getInstance().getAccount();
 
                 GameService gameService = new GameService();
@@ -235,8 +230,7 @@ public class ScrollWorld extends ScoreCounter {
 
                 _svar1.build();
                 isInQuizMode = true;
-                
-                
+
             }
 
         } else {
@@ -258,11 +252,12 @@ public class ScrollWorld extends ScoreCounter {
     public int getPoints() {
         return _points;
     }
-    
-    public void setIsInQuizMode(boolean quiz){
+
+    public void setIsInQuizMode(boolean quiz) {
         isInQuizMode = quiz;
-        checkPoints= checkPoints*2;
+        checkPoints = checkPoints * 2;
     }
+
     public void die() {
         if (_player.getLife() < 1) {
             AppState.getInstance().getGameState().finishGame(new GameResult(_points));

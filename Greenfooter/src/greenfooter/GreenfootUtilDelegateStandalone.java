@@ -1,14 +1,13 @@
 package greenfooter;
 
-import bluej.Config;
 import greenfoot.GreenfootImage;
 import greenfoot.UserInfo;
 import greenfoot.platforms.GreenfootUtilDelegate;
 import java.awt.Component;
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,25 +17,27 @@ public class GreenfootUtilDelegateStandalone implements GreenfootUtilDelegate {
     @Override
     public URL getResource(String relativeFileUri) {
 
+        String prefix = relativeFileUri.substring(relativeFileUri.length() - 4).equals(".wav") ? "sounds/" : "images/";
+
         try {
             // Greenfoot have hardcoded it image path
-            String absoluteFileUri = relativeFileUri.substring("images/".length());
+            String absoluteFileUri = relativeFileUri.substring(prefix.length());
             File absoluteFile = new File(absoluteFileUri);
 
             // If the relativeFileUri is a absoluteFileUri, then return that file
             if (absoluteFile.exists()) {
                 return absoluteFile.toURI().toURL();
             }
-            
+
             // We want to have the same splitter
             relativeFileUri = relativeFileUri.replace("/", "\\");
-            
+
             // Get the current working path
             String path = new File(".").getAbsolutePath();
-            
+
             // When using `new File(".")` it adds a "." to the end of the path
             path = path.substring(0, path.length() - 1);
-            
+
             // Get the file uri
             String fileUri = path + relativeFileUri;
 
@@ -47,12 +48,7 @@ public class GreenfootUtilDelegateStandalone implements GreenfootUtilDelegate {
             if (file.exists()) {
                 return file.toURI().toURL();
             }
-
-            // Nothing have been return, so the file is not found
-            throw new Exception("File not found {" + fileUri + "}");
-        } catch (IOException ex) {
-            Logger.getLogger(GreenfootUtilDelegateStandalone.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
+        } catch (MalformedURLException ex) {
             Logger.getLogger(GreenfootUtilDelegateStandalone.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -61,12 +57,12 @@ public class GreenfootUtilDelegateStandalone implements GreenfootUtilDelegate {
 
     @Override
     public Iterable<String> getSoundFiles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<>();
     }
 
     @Override
     public String getGreenfootLogoPath() {
-        return "C:\\Users\\rolf\\Desktop\\datamatiker\\ROSKILDE PROJEKT\\Svar1.png";
+        return "logo.jpg";
     }
 
     @Override
