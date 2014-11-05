@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Character extends Actor
 {   
     private int _life = 3;
-    
+    public static int j = 3;
     /**
      * Act - do whatever the Character wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -18,10 +18,10 @@ public class Character extends Actor
     {
         // Add your action code here.
         if(Greenfoot.isKeyDown("right")){
-            setLocation(getX()+2, getY());
+            setLocation(getX()+j, getY());
         }
         if(Greenfoot.isKeyDown("left")){
-            setLocation(getX()-2, getY());
+            setLocation(getX()-j, getY());
         }
         
         Actor beer = getOneObjectAtOffset(0, 0, Beer.class);

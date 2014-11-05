@@ -12,7 +12,7 @@ public class Collectables extends Actor
      * Act - do whatever the Collectables wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int GAMESPEED = -3;
+    public static int GAMESPEED = -3;
     
     public void act() 
     {
