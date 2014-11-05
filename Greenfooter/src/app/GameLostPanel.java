@@ -32,9 +32,10 @@ public class GameLostPanel extends javax.swing.JPanel {
         lblLostHeader = new javax.swing.JLabel();
         lblScoreText = new javax.swing.JLabel();
         lblScore = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        panelButtons = new javax.swing.JPanel();
         btnPlayAgain = new javax.swing.JButton();
         btnHighscore = new javax.swing.JButton();
+        btnSignOut = new javax.swing.JButton();
 
         lblLostHeader.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblLostHeader.setText("You lost!");
@@ -45,40 +46,62 @@ public class GameLostPanel extends javax.swing.JPanel {
         lblScore.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblScore.setText("0");
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        panelButtons.setLayout(new java.awt.BorderLayout());
 
-        btnPlayAgain.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnPlayAgain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/button.png"))); // NOI18N
         btnPlayAgain.setText("Play again");
+        btnPlayAgain.setContentAreaFilled(false);
+        btnPlayAgain.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPlayAgain.setMargin(new java.awt.Insets(0, 14, 2, 14));
+        btnPlayAgain.setPreferredSize(new java.awt.Dimension(333, 70));
         btnPlayAgain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlayAgainActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPlayAgain, java.awt.BorderLayout.PAGE_START);
+        panelButtons.add(btnPlayAgain, java.awt.BorderLayout.PAGE_END);
 
-        btnHighscore.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnHighscore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/button.png"))); // NOI18N
         btnHighscore.setText("Highscore");
+        btnHighscore.setContentAreaFilled(false);
+        btnHighscore.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHighscore.setPreferredSize(new java.awt.Dimension(333, 70));
         btnHighscore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighscoreActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHighscore, java.awt.BorderLayout.CENTER);
+        panelButtons.add(btnHighscore, java.awt.BorderLayout.CENTER);
+
+        btnSignOut.setText("Sign out");
+        btnSignOut.setContentAreaFilled(false);
+        btnSignOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLostHeader)
+                    .addComponent(panelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblScoreText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblScore)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblLostHeader)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblScoreText)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblScore)))
+                        .addGap(0, 20, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(btnSignOut)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,8 +113,10 @@ public class GameLostPanel extends javax.swing.JPanel {
                     .addComponent(lblScoreText)
                     .addComponent(lblScore))
                 .addGap(72, 72, 72)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 196, Short.MAX_VALUE))
+                .addComponent(panelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(btnSignOut)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -103,14 +128,20 @@ public class GameLostPanel extends javax.swing.JPanel {
         AppState.getInstance().setState(AppStates.PLAYING);
     }//GEN-LAST:event_btnPlayAgainActionPerformed
 
+    private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
+        AppState.getInstance().setAccount(null);
+        AppState.getInstance().setState(AppStates.AUTHENTICATE);
+    }//GEN-LAST:event_btnSignOutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHighscore;
     private javax.swing.JButton btnPlayAgain;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnSignOut;
     private javax.swing.JLabel lblLostHeader;
     private javax.swing.JLabel lblScore;
     private javax.swing.JLabel lblScoreText;
+    private javax.swing.JPanel panelButtons;
     // End of variables declaration//GEN-END:variables
 
     void setScore(int score) {

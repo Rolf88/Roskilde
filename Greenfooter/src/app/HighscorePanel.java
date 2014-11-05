@@ -5,8 +5,11 @@
  */
 package app;
 
+import app.domain.AppStates;
+import app.helpers.CustomTableCellRenderer;
 import business.GameService;
 import domain.HighscoreItem;
+import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,13 +18,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HighscorePanel extends javax.swing.JPanel {
 
-    private GameService gameService = new GameService();
+    private final GameService gameService = new GameService();
 
     /**
      * Creates new form HighscorePanel
      */
     public HighscorePanel() {
         initComponents();
+
+        CustomTableCellRenderer headerRenderer = new CustomTableCellRenderer();
+        headerRenderer.setOpaque(true);
+        headerRenderer.setBackground(new Color(40, 40, 40));
+
+        tblHighscores.getTableHeader().setDefaultRenderer(headerRenderer);
+
+        tblHighscores.setDefaultRenderer(String.class, new CustomTableCellRenderer());
+
     }
 
     /**
@@ -33,10 +45,14 @@ public class HighscorePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        headerPanel = new javax.swing.JPanel();
         lblHighscoreHeader = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHighscores = new javax.swing.JTable();
+        footerNavigationPanel = new javax.swing.JPanel();
+        btnPlayAgain = new javax.swing.JButton();
+        btnSignOut = new javax.swing.JButton();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -44,8 +60,14 @@ public class HighscorePanel extends javax.swing.JPanel {
             }
         });
 
+        headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        headerPanel.setLayout(new java.awt.BorderLayout());
+
         lblHighscoreHeader.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblHighscoreHeader.setText("Highscore");
+        headerPanel.add(lblHighscoreHeader, java.awt.BorderLayout.CENTER);
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         tblHighscores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,7 +81,7 @@ public class HighscorePanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
@@ -73,36 +95,61 @@ public class HighscorePanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblHighscores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblHighscores.setFillsViewportHeight(true);
+        tblHighscores.setFocusable(false);
+        tblHighscores.setRequestFocusEnabled(false);
+        tblHighscores.setRowHeight(30);
         tblHighscores.setRowSelectionAllowed(false);
+        tblHighscores.setShowVerticalLines(false);
         tblHighscores.getTableHeader().setResizingAllowed(false);
         tblHighscores.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblHighscores);
+        if (tblHighscores.getColumnModel().getColumnCount() > 0) {
+            tblHighscores.getColumnModel().getColumn(0).setResizable(false);
+            tblHighscores.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        footerNavigationPanel.setLayout(new java.awt.GridLayout());
+
+        btnPlayAgain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/button.png"))); // NOI18N
+        btnPlayAgain.setText("Play again");
+        btnPlayAgain.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPlayAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlayAgainActionPerformed(evt);
+            }
+        });
+        footerNavigationPanel.add(btnPlayAgain);
+
+        btnSignOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/button.png"))); // NOI18N
+        btnSignOut.setText("Sign out");
+        btnSignOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSignOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignOutActionPerformed(evt);
+            }
+        });
+        footerNavigationPanel.add(btnSignOut);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblHighscoreHeader)
-                        .addGap(0, 70, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(footerNavigationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblHighscoreHeader)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(footerNavigationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -118,7 +165,7 @@ public class HighscorePanel extends javax.swing.JPanel {
         // add the persons to the table
         for (HighscoreItem highscoreItem : gameService.getHighscores()) {
             Object[] row = {
-                highscoreItem.getAccountName(), highscoreItem.getScore()
+                highscoreItem.getAccountName(), String.valueOf(highscoreItem.getScore())
             };
 
             model.addRow(row);
@@ -126,10 +173,23 @@ public class HighscorePanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_formComponentShown
 
+    private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
+        AppState.getInstance().setAccount(null);
+        AppState.getInstance().setState(AppStates.AUTHENTICATE);
+    }//GEN-LAST:event_btnSignOutActionPerformed
+
+    private void btnPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayAgainActionPerformed
+        AppState.getInstance().setState(AppStates.PLAYING);
+    }//GEN-LAST:event_btnPlayAgainActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPlayAgain;
+    private javax.swing.JButton btnSignOut;
+    private javax.swing.JPanel footerNavigationPanel;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblHighscoreHeader;
     private javax.swing.JTable tblHighscores;
     // End of variables declaration//GEN-END:variables

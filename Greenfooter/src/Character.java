@@ -1,27 +1,29 @@
+
+import app.AppState;
+import game.GameResult;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Character here.
- * 
- * @author (your name) 
+ *
+ * @author (your name)
  * @version (a version number or a date)
  */
-public class Character extends Actor
-{   
-    private int _life = 3;
+public class Character extends Actor {    
     
+    private int _life = 3;
+
     /**
-     * Act - do whatever the Character wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Act - do whatever the Character wants to do. This method is called
+     * whenever the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() 
-    {
+    public void act() {
         // Add your action code here.
-        if(Greenfoot.isKeyDown("right")){
-            setLocation(getX()+2, getY());
+        if (Greenfoot.isKeyDown("right")) {
+            setLocation(getX() + 2, getY());
         }
-        if(Greenfoot.isKeyDown("left")){
-            setLocation(getX()-2, getY());
+        if (Greenfoot.isKeyDown("left")) {
+            setLocation(getX() - 2, getY());
         }
         
         Actor beer = getOneObjectAtOffset(0, 0, Beer.class);
@@ -31,53 +33,52 @@ public class Character extends Actor
         Actor drugs = getOneObjectAtOffset(0, 0, Drugs.class);
         Actor obstacle = getOneObjectAtOffset(0, 0, Obstacle.class);
         
-        if(beer !=null){
-           
-           ScoreCounter level = (ScoreCounter)getWorld();
-           
-           level.eatBeer((Beer)beer);
+        if (beer != null) {
+            
+            ScoreCounter level = (ScoreCounter) getWorld();
+            
+            level.eatBeer((Beer) beer);
         }
         
-        if(food !=null){
-           
-           ScoreCounter level = (ScoreCounter)getWorld();
-           
-           level.eatFood((Food)food);
+        if (food != null) {
+            
+            ScoreCounter level = (ScoreCounter) getWorld();
+            
+            level.eatFood((Food) food);
         }
         
-        if(condoms !=null){
-           
-           ScoreCounter level = (ScoreCounter)getWorld();
-           
-           level.eatCondoms((Condoms)condoms);
+        if (condoms != null) {
+            
+            ScoreCounter level = (ScoreCounter) getWorld();
+            
+            level.eatCondoms((Condoms) condoms);
         }
         
-        if(thief !=null){
-           
-           ScoreCounter level = (ScoreCounter)getWorld();
-           
-           level.eatThief((Thief)thief);
+        if (thief != null) {
+            
+            ScoreCounter level = (ScoreCounter) getWorld();
+            
+            level.eatThief((Thief) thief);
+            
+            AppState.getInstance().getGameState().finishGame(new GameResult(200));
         }
         
-        if(drugs !=null){
-           
-           ScoreCounter level = (ScoreCounter)getWorld();
-           
-           level.eatDrugs((Drugs)drugs);
+        if (drugs != null) {
+            
+            ScoreCounter level = (ScoreCounter) getWorld();
+            
+            level.eatDrugs((Drugs) drugs);
         }
         
-        if(obstacle != null)
-        {   
+        if (obstacle != null) {            
             _life -= 1;
             
-            getWorld().removeObject((Obstacle)obstacle);
+            getWorld().removeObject((Obstacle) obstacle);
         }
         
     }
     
-    public int getLife()
-    {
+    public int getLife() {
         return _life;
     }
-    }   
- 
+}

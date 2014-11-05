@@ -7,9 +7,16 @@ package app;
 
 import app.domain.AppStates;
 import game.GameResult;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,16 +24,35 @@ import java.util.Observer;
  */
 public class MainFrame extends javax.swing.JFrame implements Observer {
 
+    int posX = 0, posY = 0;
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
+    setContentPane(new JLabel(new ImageIcon("C:\\Users\\priva_000\\Desktop\\iphone.png")));
         initComponents();
 
         AppState.getInstance().addObserver(this);
 
         authenticationPanel.setMainFrame(this);
         gamePanel.setMainFrame(this);
+
+        this.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                posX = e.getX();
+                posY = e.getY();
+            }
+        });
+
+        this.addMouseMotionListener(new MouseAdapter() {
+            public void mouseDragged(MouseEvent evt) {
+                //sets frame position when mouse dragged			
+                setLocation(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY);
+            }
+        });
+        
+        setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 
     void beginGame() {
@@ -49,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 cardLayout.show(this.mainPanel, "authenticationCard");
                 break;
             case LOST:
-                GameResult gameResult = (GameResult)o1;
+                GameResult gameResult = (GameResult) o1;
                 cardLayout.show(this.mainPanel, "gameLostCard");
                 this.gameLostPanel.setScore(gameResult.getScore());
                 break;
@@ -68,19 +94,33 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        iphoneContainerPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         authenticationPanel = new app.AuthenticationPanel();
         gamePanel = new app.GamePanel();
         gameLostPanel = new app.GameLostPanel();
         highscorePanel = new app.HighscorePanel();
-        footerNavigationPanel = new app.FooterNavigationPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
         setName("Form"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(320, 568));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(368, 752));
         setResizable(false);
+        getContentPane().setLayout(new java.awt.FlowLayout());
 
+        iphoneContainerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(96, 19, 90, 19));
+        iphoneContainerPanel.setMaximumSize(new java.awt.Dimension(358, 550));
+        iphoneContainerPanel.setName("iphoneContainerPanel"); // NOI18N
+        iphoneContainerPanel.setOpaque(false);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0);
+        flowLayout1.setAlignOnBaseline(true);
+        iphoneContainerPanel.setLayout(flowLayout1);
+
+        mainPanel.setMaximumSize(new java.awt.Dimension(320, 568));
+        mainPanel.setMinimumSize(new java.awt.Dimension(320, 568));
         mainPanel.setName("mainPanel"); // NOI18N
+        mainPanel.setPreferredSize(new java.awt.Dimension(320, 568));
         mainPanel.setLayout(new java.awt.CardLayout());
 
         authenticationPanel.setName("authenticationPanel"); // NOI18N
@@ -95,32 +135,19 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         highscorePanel.setName("highscorePanel"); // NOI18N
         mainPanel.add(highscorePanel, "highscoreCard");
 
-        footerNavigationPanel.setName("footerNavigationPanel"); // NOI18N
+        iphoneContainerPanel.add(mainPanel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 256, Short.MAX_VALUE)
-            .addComponent(footerNavigationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(footerNavigationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(iphoneContainerPanel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.AuthenticationPanel authenticationPanel;
-    private app.FooterNavigationPanel footerNavigationPanel;
     private app.GameLostPanel gameLostPanel;
     private app.GamePanel gamePanel;
     private app.HighscorePanel highscorePanel;
+    private javax.swing.JPanel iphoneContainerPanel;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 
