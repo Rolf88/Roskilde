@@ -17,6 +17,10 @@ public class Character extends Actor
      * Act - do whatever the Character wants to do. This method is called
      * whenever the 'Act' or 'Run' button gets pressed in the environment.
      */
+    //public Character(){
+      //  setImage("man01.png");
+    //}
+    
     public void act() {
         // Add your action code here.
         if(Greenfoot.isKeyDown("right")){
@@ -60,7 +64,7 @@ public class Character extends Actor
             
             level.eatThief((Thief) thief);
             
-            AppState.getInstance().getGameState().finishGame(new GameResult(200));
+            
         }
         
         if (drugs != null) {

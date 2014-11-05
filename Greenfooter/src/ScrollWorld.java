@@ -59,6 +59,8 @@ public class ScrollWorld extends ScoreCounter {
         setBackground(background);
         initializeScore();
         initializeLifeScore();
+        scrollSpeed = -3;
+        Collectables.GAMESPEED = -3;
 
         addObject(_player, 160, 480);
 
@@ -80,6 +82,7 @@ public class ScrollWorld extends ScoreCounter {
         addDrugs();
         addObstacle();
 
+        die();
     }
 
     /**
