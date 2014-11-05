@@ -69,13 +69,8 @@ public class GreenfootStandaloneScenarioViewer extends JPanel {
 
                 guiSetup(lockScenario);
 
-                WorldHandler worldHandler = WorldHandler.getInstance();
                 Class<?> worldClass = Class.forName(worldClassName);
                 worldConstructor = worldClass.getConstructor(new Class[]{});
-                World world = instantiateNewWorld();
-                if (!worldHandler.checkWorldSet()) {
-                    worldHandler.setWorld(world);
-                }
             } catch (SecurityException | IllegalArgumentException | ClassNotFoundException | NoSuchMethodException ex) {
                 Logger.getLogger(GreenfootStandaloneScenarioViewer.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -135,7 +130,7 @@ public class GreenfootStandaloneScenarioViewer extends JPanel {
 
     public World instantiateNewWorld() {
         World world = null;
-        
+
         try {
             world = (World) worldConstructor.newInstance(new Object[]{});
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
